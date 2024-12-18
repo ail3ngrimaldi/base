@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Dropdown Example</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background-color: #f0f0f0;
+        }
+        custom-dropdown {
+            /*Default, change if needed*/
+            --custom-dropdown-background: #10352b;
+            --custom-dropdown-label: #10352b;
+            --custom-dropdown-text: #ecf0f1;
+            --custom-dropdown-hover: #8fbc8f;
+            --custom-dropdown-focus: #90ee90;
+        }
+    </style>
+</head>
+<body>
+    <!-- Testing -->
+    <custom-dropdown
+        label="Select a fruit"
+        placeholder="Choose a fruit"
+        items='["Apple", "Banana", "Orange", "Mango", "Pineapple", "Strawberry"]'
+    ></custom-dropdown>
+
+    <script type="module" src="./web-awesome-based/dropdown.js"></script>
+    <script>
+        const dropdown = document.querySelector('custom-dropdown');
+        // getting the value to use later
+        dropdown.addEventListener('change', (event) => {
+            console.log('Selected value:', event.detail.value);
+        });
+    </script>
+</body>
+</html>
+
