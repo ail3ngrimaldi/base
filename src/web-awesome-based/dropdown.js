@@ -9,7 +9,6 @@ const html = tagFn(s => new DOMParser().parseFromString(`<template>${s}</templat
 const css = tagFn(s => s)
 
 const dropdownTp = html`
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
   <label for="dropdown-button"></label>
   <wa-dropdown>
     <wa-button id="dropdown-button" slot="trigger" caret aria-haspopup="listbox" tabindex="0">
@@ -20,21 +19,22 @@ const dropdownTp = html`
   </wa-dropdown>
 `
 
+/*REVISAR LOS COLORES PARA QUE SEAN MAS SIMILARES A LO QUE USAMOS EN V-COMMUNITIES */
 const dropdownCss = css`
   :host {
     display: inline-block;
-    --dropdown-background: var(--custom-dropdown-background, #f5f5f5);
-    --dropdown-text: var(--custom-dropdown-text, #000);
-    --dropdown-hover: var(--custom-dropdown-hover, #e0e0e0);
-    --dropdown-focus: var(--custom-dropdown-focus, #4A90E2);
-    font-family: var(--custom-dropdown-font, Outfit, sans-serif);
+    --dropdown-background: var(--darkseagreen);
+    --dropdown-text: var(--darkslategray);
+    --dropdown-hover: var(--whitish-green);
+    --dropdown-focus: var(--lightgreen);
+    font-family: var(--font-primary);
     width: 100%;
   }
   label {
     display: block;
     font-size: 18px;
     font-weight: 500;
-    color: var(--custom-dropdown-label);
+    color: var(--dropdown-text);
     margin-bottom: 8px;
   }
   wa-dropdown {
@@ -46,7 +46,7 @@ const dropdownCss = css`
     background: none;
     border: none;
     cursor: pointer;
-    color: var(--dropdown-text);
+    color: var(--whitesmoke); //REVISAR!
     font-size: 20px;
     font-weight: 500;
     padding: 12px;
@@ -77,7 +77,7 @@ const dropdownCss = css`
 `
 
 export class CustomDropdown extends HTMLElement {
-  static TAG = 'custom-dropdown'
+  static TAG = 'virto-dropdown'
 
   constructor() {
     super()
