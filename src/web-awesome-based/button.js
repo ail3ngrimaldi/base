@@ -1,10 +1,11 @@
+import './main.js';
+
 const tagFn = (fn) => (strings, ...parts) => fn(parts.reduce((tpl, value, i) => `${tpl}${strings[i]}${value}`, "").concat(strings[parts.length]));
 const html = tagFn((s) => new DOMParser().parseFromString(`<template>${s}</template>`, "text/html").querySelector("template"),);
 const css = tagFn((s) => s);
 
 const buttonTp = html`
   <wa-button>
-    <slot></slot>
   </wa-button>
 `
 
@@ -13,7 +14,7 @@ const buttonCss = css`
     display: inline-block;
     width: 100%;
   }
-  wa-button {
+  wa-button::part(base) {
     font-family: Outfit, sans-serif;
     cursor: pointer;
     width: 100%;
@@ -31,20 +32,21 @@ const buttonCss = css`
     text-overflow: ellipsis;
   }
 
-  wa-button:hover {
+  wa-button::part(base):hover {
     background-color: var(--lightgreen);
     color: var(--darkslategray);
   }
 
-  :host([variant="secondary"]) wa-button {
+  :host([variant="secondary"]) > wa-button::part(base) {
     background-color: var(--extra-light-green);
     color: var(--darkslategray);
     border: 1px solid var(--lightgreen);
-  }
-  :host([variant="secondary"]) wa-button:hover,
-  :host([variant="secondary"]) wa-button:focus {
-    background-color: var(--whitish-green);
-  }
+}
+
+  :host([variant="secondary"]) > wa-button::part(base):hover,
+  :host([variant="secondary"]) > wa-button::part(base):focus {
+  background-color: var(--whitish-green);
+}
 `
 
 export class ButtonVirto extends HTMLElement {
@@ -53,15 +55,16 @@ export class ButtonVirto extends HTMLElement {
   }
 
   constructor() {
-    super()
-    this.attachShadow({ mode: "open" })
-    this.shadowRoot.appendChild(buttonTp.content.cloneNode(true))
+    super();
+    this.attachShadow({ mode: "open" });
+    this.shadowRoot.appendChild(buttonTp.content.cloneNode(true));
 
-    const style = document.createElement("style")
-    style.textContent = buttonCss
-    this.shadowRoot.appendChild(style)
+    const style = document.createElement("style");
+    style.textContent = buttonCss;
+    this.shadowRoot.appendChild(style);
 
-    this.waButton = this.shadowRoot.querySelector("wa-button")
+    this.waButton = this.shadowRoot.querySelector("wa-button");
+    this.waButton.textContent = this.getAttribute("label") || "Button";
   }
 
   connectedCallback() {
@@ -73,22 +76,11 @@ export class ButtonVirto extends HTMLElement {
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
-    if (oldValue !== newValue) {
-      this.updateButtonAttributes()
-    }
-  }
-
-  updateButtonAttributes() {
-    const label = this.getAttribute("label")
-    if (label) {
-      this.waButton.textContent = label
-    }
-
-    const variant = this.getAttribute("variant")
-    if (variant === "secondary") {
-      this.waButton.setAttribute("appearance", "outlined")
-    } else {
-      this.waButton.removeAttribute("appearance")
+    if (name === 'label' && this.shadowRoot) {
+        const btn = this.shadowRoot.querySelector('wa-button');
+        if (btn) {
+            btn.textContent = newValue || "Button";
+        }
     }
   }
 }

@@ -1,8 +1,4 @@
-import 'https://early.webawesome.com/webawesome@3.0.0-alpha.5/dist/components/dropdown/dropdown.js';
-import 'https://early.webawesome.com/webawesome@3.0.0-alpha.5/dist/components/button/button.js';
-import 'https://early.webawesome.com/webawesome@3.0.0-alpha.5/dist/components/menu/menu.js';
-import 'https://early.webawesome.com/webawesome@3.0.0-alpha.5/dist/components/menu-item/menu-item.js';
-import 'https://early.webawesome.com/webawesome@3.0.0-alpha.5/dist/components/icon/icon.js';
+import './main.js';
 
 const tagFn = fn => (strings, ...parts) => fn(parts.reduce((tpl, value, i) => `${tpl}${strings[i]}${value}`, '').concat(strings[parts.length]))
 const html = tagFn(s => new DOMParser().parseFromString(`<template>${s}</template>`, 'text/html').querySelector('template'))
@@ -19,7 +15,6 @@ const dropdownTp = html`
   </wa-dropdown>
 `
 
-/*REVISAR LOS COLORES PARA QUE SEAN MAS SIMILARES A LO QUE USAMOS EN V-COMMUNITIES */
 const dropdownCss = css`
   :host {
     display: inline-block;
@@ -46,7 +41,7 @@ const dropdownCss = css`
     background: none;
     border: none;
     cursor: pointer;
-    color: var(--whitesmoke); //REVISAR!
+    color: var(--whitesmoke);
     font-size: 20px;
     font-weight: 500;
     padding: 12px;
@@ -61,6 +56,7 @@ const dropdownCss = css`
     background: var(--dropdown-background);
     border-radius: 12px;
     padding: 8px 0;
+    width: 140%;
     max-height: 300px;
     overflow-y: auto;
   }
@@ -81,12 +77,12 @@ export class CustomDropdown extends HTMLElement {
 
   constructor() {
     super()
-    const shadow = this.attachShadow({ mode: 'open' })
-    shadow.append(dropdownTp.content.cloneNode(true))
+    const shadow = this.attachShadow({ mode: 'open' });
+    shadow.append(dropdownTp.content.cloneNode(true));
     
-    const style = document.createElement('style')
-    style.textContent = dropdownCss
-    shadow.appendChild(style)
+    const style = document.createElement('style');
+    style.textContent = dropdownCss;
+    shadow.appendChild(style);
 
     this.label = shadow.querySelector('label')
     this.dropdown = shadow.querySelector('wa-dropdown')
@@ -105,7 +101,7 @@ export class CustomDropdown extends HTMLElement {
     this.render()
   }
 
-  attributeChangedCallback(name, oldValue, newValue) {
+  attributeChangedCallback(oldValue, newValue) {
     if (oldValue !== newValue) {
       this.render()
     }

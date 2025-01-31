@@ -6,62 +6,67 @@
     <title>Custom Dropdown Example</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
     <style>
+
         :root {
-            /* Fondo y textos principales */
+            /*From Dani's proyect*/
             --white: white;
             --whitesmoke: whitesmoke;
             --darkslategray: darkslategray;
             --lightgreen: lightgreen;
             --darkseagreen: darkseagreen;
             --black: #0000004D;
-            /* Botones e inputs COLORES ESPECIFICOS DEL DISEÑO DE LOGIN/REGISTER DE FIGMA*/
+            /*From Figma*/
             --green: #24AF37;
             --whitish-green: #c6ebc7;
             --dark-green: #006B0A;
             --extra-light-green: #DDFBE0;
-            /*dialog fondo*/
+            /*Dialog background*/
             --gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.5) 100%), radial-gradient(84.04% 109.28% at 10.3% 12.14%, rgba(86, 201, 96, 0.5) 0%, rgba(198, 235, 199, 0) 98.5%);
-
+            /*Fonts*/
             --font-primary: Outfit, sans-serif;
             --font-secondary: Plus Jakarta, sans-serif;
-            /*COLORES QUE NO SE PARA QUE ESTAN */
+            /* Unused by now*/
             --color-accent-rgb: rgb(72, 61, 139);
             --color-text-alt: #446;
         }
         * {
             box-sizing: border-box;
             margin: 0;
-            padding: 0;
+            padding: 12px;
             font-family: var(--font-primary);
         }
+
         body {
             background-color: var(--whitesmoke);
+        }
+
+        div {
+            border-bottom: 2px solid var(--lightgreen);
+            border-radius: 1px;
         }
 
     </style>
 </head>
 <body>
-    <!-- Testing -->
+
     <virto-dropdown
         label="Select a fruit"
         placeholder="Choose a fruit"
         items='["Apple", "Banana", "Orange", "Mango", "Pineapple", "Strawberry"]'
     ></virto-dropdown>
-    <label>Enter your username</label>
+    <div></div>
     <virto-input  type="text" required aria-placeholder="type an username"></virto-input>
+    <div></div>
     <virto-button label="Hola"></virto-button>
+    <virto-button label="Chau" variant="secondary"></virto-button>
+    <div></div>
+    <div>Agregar dialog</div>
+    <div>Agregar markdown</div>
+    <div>Agregar tags</div>
 
     <script type="module">
-        import './web-awesome-based/input.js';
-
-    </script>
-     <script type="module">
-        import './web-awesome-based/button.js';
-    </script>
-    <script type="module">
-        import './web-awesome-based/dropdown.js';
-
-
+        import './web-awesome-based/main.js';
+        /*Testing dropdown*/
         const dropdown = document.querySelector('virto-dropdown');
         dropdown.addEventListener('change', (event) => {
             console.log('Selected value:', event.detail.value);
