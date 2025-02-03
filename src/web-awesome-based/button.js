@@ -67,10 +67,6 @@ export class ButtonVirto extends HTMLElement {
     this.waButton.textContent = this.getAttribute("label") || "Button";
   }
 
-  connectedCallback() {
-    this.updateButtonAttributes()
-  }
-
   static get observedAttributes() {
     return ["label", "variant"]
   }

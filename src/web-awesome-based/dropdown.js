@@ -143,5 +143,7 @@ export class CustomDropdown extends HTMLElement {
   }
 }
 
-customElements.define(CustomDropdown.TAG, CustomDropdown)
+if (!customElements.get(CustomDropdown.TAG)) {
+  customElements.define(CustomDropdown.TAG, CustomDropdown);
+}
 
