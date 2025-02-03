@@ -1,6 +1,6 @@
 {
   "name": "virto-components",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "base components by virto network",
   "main": "dist/components.js",
   "module": "dist/components.js",
