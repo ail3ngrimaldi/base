@@ -94,11 +94,11 @@ var ButtonVirto = class extends HTMLElement {
 customElements.define(ButtonVirto.TAG, ButtonVirto);
 
 // src/web-awesome-based/dropdown.js
-import "https://early.webawesome.com/webawesome@3.0.0-alpha.5/dist/components/dropdown/dropdown.js";
-import "https://early.webawesome.com/webawesome@3.0.0-alpha.5/dist/components/button/button.js";
-import "https://early.webawesome.com/webawesome@3.0.0-alpha.5/dist/components/menu/menu.js";
-import "https://early.webawesome.com/webawesome@3.0.0-alpha.5/dist/components/menu-item/menu-item.js";
-import "https://early.webawesome.com/webawesome@3.0.0-alpha.5/dist/components/icon/icon.js";
+import "https://early.webawesome.com/webawesome@3.0.0-alpha.9/dist/components/dropdown/dropdown.js";
+import "https://early.webawesome.com/webawesome@3.0.0-alpha.9/dist/components/button/button.js";
+import "https://early.webawesome.com/webawesome@3.0.0-alpha.9/dist/components/menu/menu.js";
+import "https://early.webawesome.com/webawesome@3.0.0-alpha.9/dist/components/menu-item/menu-item.js";
+import "https://early.webawesome.com/webawesome@3.0.0-alpha.9/dist/components/icon/icon.js";
 var tagFn2 = (fn) => (strings, ...parts) => fn(parts.reduce((tpl, value, i) => `${tpl}${strings[i]}${value}`, "").concat(strings[parts.length]));
 var html2 = tagFn2((s) => new DOMParser().parseFromString(`<template>${s}</template>`, "text/html").querySelector("template"));
 var css2 = tagFn2((s) => s);
