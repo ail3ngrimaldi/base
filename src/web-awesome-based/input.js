@@ -1,8 +1,5 @@
 import './main.js';
-
-const tagFn = fn => (strings, ...parts) => fn(parts.reduce((tpl, value, i) => `${tpl}${strings[i]}${value}`, '').concat(strings[parts.length]));
-const html = tagFn(s => new DOMParser().parseFromString(`<template>${s}</template>`, 'text/html').querySelector('template'));
-const css = tagFn(s => s);
+import { html, css } from './utils.js';
 
 const inputTp = html`
     <wa-input></wa-input>
