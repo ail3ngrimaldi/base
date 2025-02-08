@@ -95,7 +95,6 @@ export class TextareaVirto extends HTMLElement {
   }
 
   updateTextarea() {
-    console.log('hola')
     if (this.waTextarea) {
       TextareaVirto.observedAttributes.forEach((attr) => {
         if (this.hasAttribute(attr)) {
