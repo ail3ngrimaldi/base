@@ -7,7 +7,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
     <style>
 
-        :root {
+/*Trying this selectors to see if styles are seen when using the library somewhere else*/
+        :where(:root), :host {
             /*From Dani's proyect*/
             --white: white;
             --whitesmoke: whitesmoke;
@@ -48,6 +49,7 @@
     </style>
 </head>
 <body>
+    <h2>Dropdown</h2>
 
     <virto-dropdown
         label="Select a fruit"
@@ -55,17 +57,107 @@
         items='["Apple", "Banana", "Orange", "Mango", "Pineapple", "Strawberry"]'
     ></virto-dropdown>
     <div></div>
+    <h2>Input</h2>
+
     <virto-input type="text" required aria-placeholder="type an username"></virto-input>
+
     <div></div>
+    
+    <h2>Buttons</h2>
+
     <virto-button label="Hola"></virto-button>
     <virto-button label="Chau" variant="secondary"></virto-button>
+
     <div></div>
-    <div>Agregar dialog 3/2 - Creado pero ajustando detalles</div>
-    <div>Agregar card 4/2</div>
-    <div>Agregar notification 4/2</div>
-    <div>Agregar checkbox 4/2</div>
-    <div>Agregar toggle 6/2</div>
-    <div>Agregar tags 6/2</div>
+    <h2>Cards</h2>
+
+    <!-- <virto-card>
+        <img slot="image" src="path/to/image.jpg" alt="Card image">
+        <h2 slot="header">Card Title</h2>
+        <p>This is the main content of the card.</p>
+        <div slot="footer">Footer content</div>
+    </virto-card>
+      
+    
+    <virto-card size="small">
+        <h3 slot="header">Small Card</h3>
+        <p>This is a smaller card.</p>
+    </virto-card>
+      
+    <div></div>
+
+    <virto-card size="large">
+        <h2 slot="header">Large Card</h2>
+        <p>This is a larger card with more content.</p>
+        <virto-button slot="footer" label="Learn More"></virto-button>
+    </virto-card> -->
+
+    <div></div>
+
+    <h2>Textarea</h2>
+
+    <virto-textarea label="Comments" hint="Please provide your feedback" rows="4"></virto-textarea>
+    <virto-textarea label="Short answer" appearance="filled" placeholder="Type your answer here"></virto-textarea>
+
+    <div></div>
+
+    <h2>Icon buttons</h2>
+
+    <virto-icon-button name="gear" label="Settings"></virto-icon-button>
+    <virto-icon-button name="trash" label="Delete" variant="secondary"></virto-icon-button>
+    <virto-icon-button name="plus" label="Add"></virto-icon-button>
+
+    <div></div>
+
+    <h2>Checkbox</h2>
+
+    <!-- <virto-checkbox label="Accept terms" checked size="large"></virto-checkbox> -->
+
+    <div></div>
+
+    <h2>Toggle</h2>
+
+    <virto-switch>Default Switch</virto-switch>
+    <virto-switch checked>Checked Switch</virto-switch>
+    <virto-switch disabled>Disabled Switch</virto-switch>
+    <virto-switch size="small">Small Switch</virto-switch>
+    <virto-switch size="large">Large Switch</virto-switch>
+    <virto-switch hint="This is a hint">Switch with Hint</virto-switch>
+
+    <div></div>
+    <h2>Tags</h2>
+
+    <virto-tag>Default</virto-tag>
+    <virto-tag variant="brand">Brand</virto-tag>
+    <virto-tag variant="success">Success</virto-tag>
+    <virto-tag variant="warning">Warning</virto-tag>
+    <virto-tag variant="danger">Danger</virto-tag>
+
+    <virto-tag appearance="outlined">Outlined</virto-tag>
+
+    <virto-tag size="small">Small</virto-tag>
+    <virto-tag size="large">Large</virto-tag>
+
+    <virto-tag pill>Pill</virto-tag>
+
+    <virto-tag removable>Removable</virto-tag>
+
+    <virto-tag class="editing">Editing</virto-tag>
+
+    <div></div>
+
+    <h2>Avatar</h2>
+
+    <virto-avatar label="Default Avatar"></virto-avatar>
+    <virto-avatar initials="JD" label="John Doe"></virto-avatar>
+    <virto-avatar shape="square" label="Square Avatar"></virto-avatar>
+    <virto-avatar shape="rounded" label="Rounded Avatar"></virto-avatar>
+    <virto-avatar size="small" label="Small Avatar"></virto-avatar>
+    <virto-avatar size="large" label="Large Avatar"></virto-avatar>
+
+    <virto-avatar label="Custom Icon Avatar">
+    <wa-icon slot="icon" name="star"></wa-icon>
+    </virto-avatar>
 
 
 
@@ -76,6 +168,16 @@
         dropdown.addEventListener('change', (event) => {
             console.log('Selected value:', event.detail.value);
         });
+
+        const checkbox = document.querySelector('virto-checkbox');
+
+        checkbox.addEventListener('change', (event) => {
+        console.log('Checkbox state:', event.detail.checked);
+        });
+
+        checkbox.toggle(); // Toggles the checkbox state
+        console.log(checkbox.checked); // Logs the current checked state
+
     </script>
 </body>
 </html>
