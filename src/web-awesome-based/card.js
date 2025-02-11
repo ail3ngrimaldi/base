@@ -114,4 +114,6 @@ export class CardVirto extends HTMLElement {
   }
 }
 
-customElements.define(CardVirto.TAG, CardVirto)
+if (!customElements.get(CardVirto.TAG)) {
+  customElements.define(CardVirto.TAG, CardVirto)
+}

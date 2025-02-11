@@ -78,5 +78,6 @@ export class ButtonVirto extends HTMLElement {
   }
 }
 
-customElements.define(ButtonVirto.TAG, ButtonVirto)
-
+if (!customElements.get(ButtonVirto.TAG)) {
+  customElements.define(ButtonVirto.TAG, ButtonVirto)
+}

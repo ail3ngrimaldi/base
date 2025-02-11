@@ -150,5 +150,6 @@ export class TagVirto extends HTMLElement {
   }
 }
 
-customElements.define(TagVirto.TAG, TagVirto)
-
+if (!customElements.get(TagVirto.TAG)) {
+  customElements.define(TagVirto.TAG, TagVirto);
+}

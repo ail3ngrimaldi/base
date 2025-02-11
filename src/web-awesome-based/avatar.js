@@ -113,4 +113,6 @@ export class AvatarVirto extends HTMLElement {
   }
 }
 
-customElements.define(AvatarVirto.TAG, AvatarVirto)
+if (!customElements.get(AvatarVirto.TAG)) {
+  customElements.define(AvatarVirto.TAG, AvatarVirto);
+}

@@ -80,4 +80,6 @@ export class IconButtonVirto extends HTMLElement {
   }
 }
 
-customElements.define(IconButtonVirto.TAG, IconButtonVirto)
+if (!customElements.get(IconButtonVirto.TAG)) {
+  customElements.define(IconButtonVirto.TAG, IconButtonVirto);
+}

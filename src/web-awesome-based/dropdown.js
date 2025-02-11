@@ -69,7 +69,7 @@ const dropdownCss = css`
   }
 `
 
-export class CustomDropdown extends HTMLElement {
+export class DropdownVirto extends HTMLElement {
   static TAG = 'virto-dropdown'
 
   constructor() {
@@ -140,7 +140,6 @@ export class CustomDropdown extends HTMLElement {
   }
 }
 
-if (!customElements.get(CustomDropdown.TAG)) {
-  customElements.define(CustomDropdown.TAG, CustomDropdown);
+if (!customElements.get(DropdownVirto.TAG)) {
+  customElements.define(DropdownVirto.TAG, DropdownVirto);
 }
-

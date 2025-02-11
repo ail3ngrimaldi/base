@@ -107,5 +107,6 @@ export class TextareaVirto extends HTMLElement {
   }
 }
 
-customElements.define(TextareaVirto.TAG, TextareaVirto)
-
+if (!customElements.get(TextareaVirto.TAG)) {
+  customElements.define(TextareaVirto.TAG, TextareaVirto);
+}

@@ -140,5 +140,6 @@ export class SwitchVirto extends HTMLElement {
   }
 }
 
-customElements.define(SwitchVirto.TAG, SwitchVirto)
-
+if (!customElements.get(SwitchVirto.TAG)) {
+  customElements.define(SwitchVirto.TAG, SwitchVirto);
+}

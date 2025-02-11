@@ -1,0 +1,11 @@
+{
+  "name": "virto-components",
+  "version": "0.1.0",
+  "description": "UI library based on web-awesome components.",
+  "main": "dist/virto-components.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ailen Grimaldi",
+  "license": "ISC"
+}

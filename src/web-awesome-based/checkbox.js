@@ -70,7 +70,7 @@ const checkboxCss = css`
 }
 `
 
-export class CustomCheckbox extends HTMLElement {
+export class CheckboxVirto extends HTMLElement {
   static TAG = "virto-checkbox"
 
   constructor() {
@@ -196,6 +196,6 @@ export class CustomCheckbox extends HTMLElement {
   }
 }
 
-if (!customElements.get(CustomCheckbox.TAG)) {
-  customElements.define(CustomCheckbox.TAG, CustomCheckbox)
+if (!customElements.get(CheckboxVirto.TAG)) {
+  customElements.define(CheckboxVirto.TAG, CheckboxVirto)
 }

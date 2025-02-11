@@ -25,7 +25,7 @@ const inputCss = css`
     }
 `
 
-export class Input extends HTMLElement {
+export class InputVirto extends HTMLElement {
     static TAG = 'virto-input'
 
     constructor() {
@@ -40,4 +40,6 @@ export class Input extends HTMLElement {
 
 }
 
-customElements.define(Input.TAG, Input);
+if (!customElements.get(InputVirto.TAG)) {
+  customElements.define(InputVirto.TAG, InputVirto);
+}
