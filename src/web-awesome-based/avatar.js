@@ -34,12 +34,14 @@ const avatarCss = css`
     object-fit: cover;
   }
 
-  :host([shape="square"]) wa-avatar {
-    --border-radius: 0;
+  :host([shape="rounded-square"]) wa-avatar {
+    --border-radius: 12px;
+    border-radius: var(--border-radius);
   }
 
   :host([shape="rounded"]) wa-avatar {
-    --border-radius: 4px;
+    --border-radius: 50px;
+    border-radius: var(--border-radius);
   }
 
   :host(:hover) wa-avatar::part(base) {
