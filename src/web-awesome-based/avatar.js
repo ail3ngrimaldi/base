@@ -103,6 +103,11 @@ export class AvatarVirto extends HTMLElement {
       } else {
         this.waAvatar.removeAttribute('shape');
       }
+      const borderRadius = this.getAttribute('shape') === 'rounded-square' ? '12px' :
+      this.getAttribute('shape') === 'rounded' ? '50px' :
+      '50%';
+
+      this.waAvatar.style.setProperty('--border-radius', borderRadius);
     }
   }
 
