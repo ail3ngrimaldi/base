@@ -61,21 +61,27 @@
 
     <virto-input label="Name" placeholder="Enter your name"></virto-input>
 
+    <virto-input label="Email" type="email" placeholder="Enter your email" required></virto-input>
+
+    <virto-input label="Password" type="password" placeholder="Enter your password"></virto-input>
+
+    <virto-input label="Username" placeholder="Choose a username" required minlength="3" hint="Must be at least 3 characters long"></virto-input>
+
     <virto-input label="Age" type="number" min="0" max="120" step="1"></virto-input>
 
     <virto-input label="Birthday" type="date"></virto-input>
 
     <virto-input label="Bio" placeholder="Tell us about yourself" rows="4"></virto-input>
 
-    <virto-input label="Large input" size="large" placeholder="This is a large input"></virto-input>
-
-    <virto-input label="Pill input" pill placeholder="This input has rounded edges"></virto-input>
-
     <virto-input label="Read-only" value="This cannot be edited" readonly></virto-input>
+
+    <virto-input label="Disabled" value="This input is disabled" disabled></virto-input>
 
     <virto-input label="Phone" type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890"></virto-input>
 
     <virto-input label="Comment" minlength="10" maxlength="100" placeholder="Enter 10-100 characters"></virto-input>
+
+    <virto-input label="Country" autocomplete="country-name" placeholder="Start typing a country name"></virto-input>
 
     <virto-input label="Autofocus" placeholder="This input is focused on page load" autofocus></virto-input>
 

@@ -60,48 +60,58 @@ const avatarCss = css`
 
 export class AvatarVirto extends HTMLElement {
   static get TAG() {
-    return "virto-avatar"
+    return "virto-avatar";
   }
 
   static get observedAttributes() {
-    return ["image", "label", "initials", "loading", "shape", "size"]
+    return ["image", "label", "initials", "loading", "shape", "size"];
   }
 
   constructor() {
-    super()
-    this.attachShadow({ mode: "open" })
-    this.shadowRoot.appendChild(avatarTp.content.cloneNode(true))
+    super();
+    this.attachShadow({ mode: "open" });
+    this.shadowRoot.appendChild(avatarTp.content.cloneNode(true));
 
-    const style = document.createElement("style")
-    style.textContent = avatarCss
-    this.shadowRoot.appendChild(style)
+    const style = document.createElement("style");
+    style.textContent = avatarCss;
+    this.shadowRoot.appendChild(style);
 
-    this.waAvatar = this.shadowRoot.querySelector("wa-avatar")
-    this.updateAvatar()
+    this.waAvatar = this.shadowRoot.querySelector("wa-avatar");
+    this.updateAvatar();
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
-    this.updateAvatar()
+    if (oldValue !== newValue) {
+      this.updateAvatar();
+    }
   }
 
   updateAvatar() {
     if (this.waAvatar) {
-      AvatarVirto.observedAttributes.forEach((attr) => {
+      ['image', 'label', 'initials', 'loading'].forEach(attr => {
         if (this.hasAttribute(attr)) {
-          this.waAvatar.setAttribute(attr, this.getAttribute(attr))
+          this.waAvatar.setAttribute(attr, this.getAttribute(attr));
         } else {
-          this.waAvatar.removeAttribute(attr)
+          this.waAvatar.removeAttribute(attr);
         }
-      })
+      });
+
+      const shapeValue = this.getAttribute('shape');
+      const validShapes = ['circle', 'square', 'rounded'];
+      if (shapeValue && validShapes.includes(shapeValue)) {
+        this.waAvatar.setAttribute('shape', shapeValue);
+      } else {
+        this.waAvatar.removeAttribute('shape');
+      }
     }
   }
 
   connectedCallback() {
-    this.waAvatar.addEventListener("wa-error", this.handleError.bind(this))
+    this.waAvatar.addEventListener("wa-error", this.handleError.bind(this));
   }
 
   disconnectedCallback() {
-    this.waAvatar.removeEventListener("wa-error", this.handleError.bind(this))
+    this.waAvatar.removeEventListener("wa-error", this.handleError.bind(this));
   }
 
   handleError(event) {
@@ -111,7 +121,7 @@ export class AvatarVirto extends HTMLElement {
         composed: true,
         detail: event.detail,
       }),
-    )
+    );
   }
 }
 
