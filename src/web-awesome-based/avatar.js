@@ -11,11 +11,15 @@ const avatarCss = css`
   :host {
     display: inline-block;
   }
+
   wa-avatar {
     --background-color: var(--extra-light-green);
     --text-color: var(--darkslategray);
     --size: 48px;
     font-family: var(--font-primary);
+    border: 2px solid red;
+    // --border-radius: 50px;
+    // border-radius: var(--border-radius);
   }
 
   wa-avatar::part(base) {
@@ -39,8 +43,8 @@ const avatarCss = css`
     border-radius: var(--border-radius);
   }
 
-  :host([shape="rounded"]) wa-avatar {
-    --border-radius: 50px;
+  :host([shape="square"]) wa-avatar {
+    --border-radius: 0;
     border-radius: var(--border-radius);
   }
 
@@ -48,7 +52,6 @@ const avatarCss = css`
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   }
 
-  /* Sizes */
   :host([size="small"]) wa-avatar {
     --size: 32px;
   }
@@ -64,7 +67,7 @@ export class AvatarVirto extends HTMLElement {
   }
 
   static get observedAttributes() {
-    return ["image", "label", "initials", "loading", "shape", "size"];
+    return ["image", "label", "initials", "loading", "shape"];
   }
 
   constructor() {
@@ -95,19 +98,6 @@ export class AvatarVirto extends HTMLElement {
           this.waAvatar.removeAttribute(attr);
         }
       });
-
-      const shapeValue = this.getAttribute('shape');
-      const validShapes = ['circle', 'square', 'rounded'];
-      if (shapeValue && validShapes.includes(shapeValue)) {
-        this.waAvatar.setAttribute('shape', shapeValue);
-      } else {
-        this.waAvatar.removeAttribute('shape');
-      }
-      const borderRadius = this.getAttribute('shape') === 'rounded-square' ? '12px' :
-      this.getAttribute('shape') === 'rounded' ? '50px' :
-      '50%';
-
-      this.waAvatar.style.setProperty('--border-radius', borderRadius);
     }
   }
 

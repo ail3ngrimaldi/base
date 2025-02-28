@@ -34,6 +34,14 @@ const buttonCss = css`
     color: var(--darkslategray);
   }
 
+  wa-button::part(base):focus {
+    outline: 2px solid var(--darkslategray);
+  }
+
+  :host([variant="secondary"]) > wa-button::part(base):focus {
+    outline: 2px solid var(--green);
+  }
+
   :host([variant="secondary"]) > wa-button::part(base) {
     background-color: var(--extra-light-green);
     color: var(--darkslategray);
