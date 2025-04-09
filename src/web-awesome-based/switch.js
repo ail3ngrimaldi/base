@@ -1,11 +1,11 @@
-import "./main.js"
 import { html, css } from './utils.js';
+import { globalStyles } from './globalStyles.js';
 
 const switchTp = html`
   <wa-switch>
     <slot></slot>
   </wa-switch>
-`
+`;
 
 const switchCss = css`
   :host {
@@ -79,64 +79,92 @@ const switchCss = css`
     opacity: 0.5;
     cursor: not-allowed;
   }
-`
+`;
 
 export class SwitchVirto extends HTMLElement {
-  static get TAG() {
-    return "virto-switch"
+  static get TAG() { return "virto-switch"; }
+
+  static get observedAttributes() {
+    return ["checked", "disabled", "size", "hint", "name", "value", "required"];
   }
 
   constructor() {
-    super()
-    this.attachShadow({ mode: "open" })
-    this.shadowRoot.appendChild(switchTp.content.cloneNode(true))
-
+    super();
+    const shadow = this.attachShadow({ mode: "open" });
+    shadow.append(switchTp.content.cloneNode(true));
     const style = document.createElement("style")
-    style.textContent = switchCss
-    this.shadowRoot.appendChild(style)
-
-    this.waSwitch = this.shadowRoot.querySelector("wa-switch")
-    this.updateSwitch()
-  }
-
-  static get observedAttributes() {
-    return ["checked", "disabled", "size", "hint", "name", "value", "required"]
-  }
-
-  attributeChangedCallback(name, oldValue, newValue) {
-    this.updateSwitch()
-  }
-
-  updateSwitch() {
-    if (this.waSwitch) {
-      SwitchVirto.observedAttributes.forEach((attr) => {
-        if (this.hasAttribute(attr)) {
-          this.waSwitch.setAttribute(attr, this.getAttribute(attr))
-        } else {
-          this.waSwitch.removeAttribute(attr)
-        }
-      })
-    }
+    style.textContent = switchCss;
+    this.shadowRoot.appendChild(style);
+    this.waSwitch = shadow.querySelector("wa-switch");
   }
 
   connectedCallback() {
-    this.waSwitch.addEventListener("change", this.handleChange.bind(this))
+    this.waSwitch.addEventListener("change", this.handleChange.bind(this));
   }
 
   disconnectedCallback() {
-    this.waSwitch.removeEventListener("change", this.handleChange.bind(this))
+    this.waSwitch.removeEventListener("change", this.handleChange.bind(this));
+  }
+
+  attributeChangedCallback(name, oldValue, newValue) {
+    if (oldValue === newValue || !this.waSwitch) return;
+
+    if (name === "checked") {
+      const isChecked = newValue !== null;
+      this.waSwitch.checked = isChecked;
+      if (isChecked) {
+        this.waSwitch.setAttribute("checked", "");
+      } else {
+        this.waSwitch.removeAttribute("checked");
+      }
+    } else if (name === "disabled") {
+      this.waSwitch.disabled = newValue !== null;
+      if (newValue !== null) this.waSwitch.setAttribute(name, "");
+      else this.waSwitch.removeAttribute(name);
+    } else {
+      if (newValue !== null) {
+        this.waSwitch.setAttribute(name, newValue);
+      } else {
+        this.waSwitch.removeAttribute(name);
+      }
+    }
+  }
+
+  syncInitialAttributes() {
+    this.constructor.observedAttributes.forEach((name) => {
+      const value = this.getAttribute(name);
+      this.attributeChangedCallback(name, null, value);
+    });
   }
 
   handleChange(event) {
+    const isChecked = event.target.checked;
+    if (isChecked) {
+      this.setAttribute("checked", "");
+    } else {
+      this.removeAttribute("checked");
+    }
     this.dispatchEvent(
       new CustomEvent("virto-change", {
         bubbles: true,
         composed: true,
-        detail: {
-          checked: event.target.checked,
-        },
-      }),
-    )
+        detail: { checked: isChecked },
+      })
+    );
+  }
+
+  get checked() {
+    return this.waSwitch.checked;
+  }
+
+  set checked(value) {
+    const isChecked = Boolean(value);
+    this.waSwitch.checked = isChecked;
+    if (isChecked) {
+      this.setAttribute("checked", "");
+    } else {
+      this.removeAttribute("checked");
+    }
   }
 }
 
