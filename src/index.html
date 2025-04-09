@@ -65,6 +65,8 @@
 
     <virto-input label="Password" type="password" placeholder="Enter your password"></virto-input>
 
+    <virto-input label="Server" type="server" placeholder="Enter the server of your organization"></virto-input>
+
     <virto-input label="Username" placeholder="Choose a username" required minlength="3" hint="Must be at least 3 characters long"></virto-input>
 
     <virto-input label="Age" type="number" min="0" max="120" step="1"></virto-input>
@@ -95,7 +97,7 @@
     <div></div>
     <h2>Cards</h2>
 
-    <!-- <virto-card>
+    <virto-card>
         <img slot="image" src="path/to/image.jpg" alt="Card image">
         <h2 slot="header">Card Title</h2>
         <p>This is the main content of the card.</p>
@@ -114,7 +116,7 @@
         <h2 slot="header">Large Card</h2>
         <p>This is a larger card with more content.</p>
         <virto-button slot="footer" label="Learn More"></virto-button>
-    </virto-card> -->
+    </virto-card>
 
     <div></div>
 
@@ -127,9 +129,9 @@
 
     <h2>Icon buttons</h2>
 
-    <virto-icon-button name="gear" label="Settings"></virto-icon-button>
+    <!-- <virto-icon-button name="gear" label="Settings"></virto-icon-button>
     <virto-icon-button name="trash" label="Delete" variant="secondary"></virto-icon-button>
-    <virto-icon-button name="plus" label="Add"></virto-icon-button>
+    <virto-icon-button name="plus" label="Add"></virto-icon-button> -->
 
     <div></div>
 
@@ -141,12 +143,14 @@
 
     <h2>Toggle</h2>
 
-    <virto-switch>Default Switch</virto-switch>
+ <virto-switch>Default Switch</virto-switch>
     <virto-switch checked>Checked Switch</virto-switch>
     <virto-switch disabled>Disabled Switch</virto-switch>
     <virto-switch size="small">Small Switch</virto-switch>
     <virto-switch size="large">Large Switch</virto-switch>
     <virto-switch hint="This is a hint">Switch with Hint</virto-switch>
+    <!--Nuevo-->
+    <virto-switch name="toggle" checked>Enable Feature</virto-switch>
 
     <div></div>
     <h2>Tags</h2>
@@ -186,6 +190,26 @@
         dropdown.addEventListener('change', (event) => {
             console.log('Selected value:', event.detail.value);
         });
+
+        /*Testing switch*/
+        const switchEl = document.querySelector("virto-switch");
+        const deactivateFunction = () => { console.log('chau') }
+        const activateFunction = () => { console.log('hola') }
+        
+        // Check current state
+        console.log(switchEl.checked); // true
+        // Listen for changes
+        switchEl.addEventListener("virto-change", (e) => {
+            console.log("Switch changed to:", e.detail.checked);
+            if (e.detail.checked) {
+            activateFunction();
+            } else {
+            deactivateFunction();
+            }
+        });
+
+        // Programmatically toggle
+        switchEl.checked = false; 
 
         // const checkbox = document.querySelector('virto-checkbox');
 
